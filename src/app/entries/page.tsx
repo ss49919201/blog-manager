@@ -1,28 +1,8 @@
-type Entry = {
-  title: string;
-  body: string;
-  updatedAt: Date;
-};
+import { findEntries } from "@/app/lib/data/entries";
 
-const entries: Array<Entry> = [
-  {
-    title: "Entry 1",
-    body: "This is the body of entry 1",
-    updatedAt: new Date("2021-10-01"),
-  },
-  {
-    title: "Entry 2",
-    body: "This is the body of entry 2",
-    updatedAt: new Date("2021-10-01"),
-  },
-  {
-    title: "Entry 3",
-    body: "This is the body of entry 3",
-    updatedAt: new Date("2021-10-01"),
-  },
-];
+export default async function Page() {
+  const entries = await findEntries();
 
-export default function Page() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <h1 className="mb-2">Entries</h1>
