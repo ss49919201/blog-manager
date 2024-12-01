@@ -1,4 +1,4 @@
-import { findEntryById } from "@/app/lib/data/entries";
+import { getEntryById } from "@/app/lib/data/entries";
 import { notFound } from "next/navigation";
 
 export default async function Page({
@@ -14,7 +14,7 @@ export default async function Page({
     throw new Error("ID is not number");
   }
 
-  const entry = await findEntryById(parsedId);
+  const entry = await getEntryById(parsedId);
 
   if (!entry) {
     notFound();

@@ -7,7 +7,7 @@ export type Entry = {
 
 export type Entries = Entry[];
 
-export async function findEntries(): Promise<Entries> {
+export async function getEntries(): Promise<Entries> {
   return [
     {
       id: 1,
@@ -24,7 +24,7 @@ export async function findEntries(): Promise<Entries> {
   ];
 }
 
-export async function findEntryById(id: number): Promise<Entry | null> {
+export async function getEntryById(id: number): Promise<Entry | null> {
   return {
     id,
     title: "Hello",
