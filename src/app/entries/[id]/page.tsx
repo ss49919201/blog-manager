@@ -1,4 +1,4 @@
-import { getEntryById } from "@/app/lib/data/entries";
+import { getEntryById, parseEntryIdOrThrow } from "@/app/lib/data/entries";
 import { notFound } from "next/navigation";
 
 export default async function Page({
@@ -6,10 +6,7 @@ export default async function Page({
 }: {
   params: { id: string };
 }) {
-  const parsedId = Number(id);
-  if (Number.isNaN(parsedId)) {
-    throw new Error("ID is not number");
-  }
+  const parsedId = parseEntryIdOrThrow(id);
 
   const entry = await getEntryById(parsedId);
 

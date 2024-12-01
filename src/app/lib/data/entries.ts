@@ -32,3 +32,16 @@ export async function getEntryById(id: number): Promise<Entry | null> {
     updatedAt: new Date(),
   };
 }
+
+/**
+ * 小数点は無視したいので、Number ではなくて parseInt を使っている
+ * Number("1.05") => 1.05
+ * parseInt("1.05") => 1
+ * */
+export function parseEntryIdOrThrow(id: string): number {
+  const parsedId = Number(id);
+  if (Number.isNaN(parsedId)) {
+    throw new Error("ID is not number");
+  }
+  return parsedId;
+}

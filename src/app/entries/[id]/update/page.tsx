@@ -1,4 +1,4 @@
-import { getEntryById } from "@/app/lib/data/entries";
+import { getEntryById, parseEntryIdOrThrow } from "@/app/lib/data/entries";
 import { notFound } from "next/navigation";
 
 export default async function Page({
@@ -6,13 +6,7 @@ export default async function Page({
 }: {
   params: { id: string };
 }) {
-  // 小数点は無視したいので、Number ではなくて parseInt を使っている
-  // Number("1.05") => 1.05
-  // parseInt("1.05") => 1
-  const parsedId = parseInt(id);
-  if (Number.isNaN(parsedId)) {
-    throw new Error("ID is not number");
-  }
+  const parsedId = parseEntryIdOrThrow(id);
 
   const entry = await getEntryById(parsedId);
 
